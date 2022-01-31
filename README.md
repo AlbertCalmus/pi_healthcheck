@@ -1,56 +1,69 @@
 # Healthcheck Flask API for Raspberry Pi
 
+## Download
+
+```Bash
+git clone git@github.com:AlbertCalmus/pi_healthcheck.git
+cd pi_healthcheck
+```
 ## Installation
 
-Install Flask
-```
-pip3 install flask
-```
+### Venv
 
-Clone this repo in your `Projects` folder
+```Bash
+python3 -m venv pi_healthcheck_venv
+source pi_healthcheck_venv/bin/activate 
+pip install -r requirements.txt
 ```
-cd Projects/
-git clone git@github.com:AlbertCalmus/pi_healthcheck.git
-```
+Add the pi_healthcheck_venv to `.gitignore`.
 
-Make sure that `app.py` is executable
-```
-cd pi_healthcheck/
+### App
+
+Make sure that `app.py` & `app.sh` is executable
+```Bash
 sudo chmod +777 app.py
+sudo chmod +777 app.sh
+ls -l app.py #to check  persmission
 ```
+
+Use the below to run the app (as a one off):
+```Bash
+bash app.sh
+```
+
+### Deamon
 
 Create a new systemd service
-```
-sudo touch /lib/systemd/system/pi-healthcheck.service
+```Bash
 sudo nano /lib/systemd/system/pi-healthcheck.service
 ```
 
 Paste the following code inside and save it using `ctrl+X`
 
-```
+```Bash
 [Unit]
 Description=pi-healthcheck
 After=multi-user.target
 [Service]
 Type=idle
-ExecStart=/usr/bin/python3 /home/pi/Projects/pi_healthcheck/app.py
+ExecStart=bash /home/pi/Projects/pi_healthcheck/app.sh
 Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 ```
 
 Reload the systemd daemon
-```
+```Bash
 sudo systemctl daemon-reload
 ```
 
 Enable the new service
-```
-sudo systemctl enable pi-healthcheck
+```Bash
+sudo systemctl enable pi-healthcheck.service
 ```
 
 Reboot your system
-```
+```Bash
 sudo reboot
 ```
 
@@ -84,6 +97,32 @@ After rebooting, browse to `192.168.1.XY:777/healthcheck`. If everything worked 
   "temp": "58.5'C"
 }
 ```
+
+## Usage 
+
+### Check status
+
+```Bash
+sudo systemctl status pi-healthcheck.service
+```
+### Start service
+
+```Bash
+sudo systemctl start pi-healthcheck.service
+```
+
+### Stop service
+
+```Bash
+sudo systemctl stop pi-healthcheck.service
+```
+
+### Check service's log
+
+```Bash
+sudo journalctl -f -u pi-healthcheck.service
+```
+
 
 ## Credits
 - https://github.com/duckietown/rpi-health

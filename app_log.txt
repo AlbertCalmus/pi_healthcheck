@@ -1,0 +1,17 @@
+2022-01-31 22:30:06 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:30:07 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:30:10 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:30:11 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:32:13 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:32:14 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:32:15 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:32:16 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:32:16 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:36:05 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:37:47 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:38:10 INFO Flask server starting
+2022-01-31 22:38:17 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:39:11 INFO Flask server starting
+2022-01-31 22:39:21 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:39:22 INFO 192.168.1.35 calls smalltalk
+2022-01-31 22:39:38 INFO 192.168.1.35 calls healthcheck
