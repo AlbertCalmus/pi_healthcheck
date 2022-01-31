@@ -26,10 +26,7 @@ sudo chmod +777 app.sh
 ls -l app.py #to check  persmission
 ```
 
-Use the below to run the app (as a one off):
-```Bash
-bash app.sh
-```
+Update `app.sh` with your path.
 
 ### Deamon
 
@@ -100,24 +97,32 @@ After rebooting, browse to `192.168.1.XY:777/healthcheck`. If everything worked 
 
 ## Usage 
 
-### Check status
+### App
+
+Use the below to run the app (as a one off):
+```Bash
+bash app.sh
+```
+
+### Deamon 
+#### Check status
 
 ```Bash
 sudo systemctl status pi-healthcheck.service
 ```
-### Start service
+#### Start service
 
 ```Bash
 sudo systemctl start pi-healthcheck.service
 ```
 
-### Stop service
+#### Stop service
 
 ```Bash
 sudo systemctl stop pi-healthcheck.service
 ```
 
-### Check service's log
+#### Check service's log
 
 ```Bash
 sudo journalctl -f -u pi-healthcheck.service
