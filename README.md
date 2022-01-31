@@ -85,6 +85,6 @@ After rebooting, browse to `192.168.1.XY:777/healthcheck`. If everything worked 
 }
 ```
 
-
-
-
+## Credits
+- https://github.com/duckietown/rpi-health
+- https://medium.com/@vishal.bala/flask-web-server-and-systemd-4b73cc22a9f8
