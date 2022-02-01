@@ -1,6 +1,6 @@
 import json
 import subprocess
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -31,7 +31,9 @@ def healthcheck():
 
   health['temp'] = get_process_output([VC, "measure_temp"])
   
-  return json.dumps(health)
+  response = jsonify(health)
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  return response
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0", port=777)
