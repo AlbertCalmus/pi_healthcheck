@@ -2,7 +2,7 @@ import json
 import logging
 import os
 import subprocess
-from flask import Flask, request,jsonify
+from flask import Flask, request, jsonify
 from random import randint
 from smalltalk_data import SMALLTALK_LIST
 
@@ -72,23 +72,25 @@ def smalltalk():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
+
 @app.route("/receive-ip", methods=['POST'])
 def receive_ip():
-  request_json = request.get_json()
-  keys = request_json.keys()
-  if "name" in keys and "ip" in keys:
-    with open('ip.json', 'r+') as json_file:
-      ip_dict = json.load(json_file)
-      ip_dict[request_json["name"]]=request_json["ip"]
-      json_file.seek(0)
-      json.dump(ip_dict,json_file,indent=4)
-      json_file.truncate()
-    ret = request_json
-  else:
-    ret = {}
-  response = jsonify(ret)
-  response.headers.add('Access-Control-Allow-Origin', '*')
-  return response
+    request_json = request.get_json()
+    keys = request_json.keys()
+    if "name" in keys and "ip" in keys:
+        with open('ip.json', 'r+') as json_file:
+            ip_dict = json.load(json_file)
+            ip_dict[request_json["name"]] = request_json["ip"]
+            json_file.seek(0)
+            json.dump(ip_dict, json_file, indent=4)
+            json_file.truncate()
+        ret = request_json
+    else:
+        ret = {}
+    response = jsonify(ret)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
 
 if __name__ == "__main__":
     logger.info('Flask server starting')
