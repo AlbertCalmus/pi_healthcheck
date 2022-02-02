@@ -1,8 +1,7 @@
-import json
 import logging
 import os
 import subprocess
-from flask import Flask, request
+from flask import Flask, request,jsonify
 from random import randint
 from smalltalk_data import SMALLTALK_LIST
 
@@ -57,7 +56,9 @@ def healthcheck():
 
     health['temp'] = get_process_output([VC, "measure_temp"])
 
-    return json.dumps(health)
+    response = jsonify(health)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @app.route("/smalltalk")
@@ -65,7 +66,10 @@ def smalltalk():
     logger.info(request.remote_addr + ' calls smalltalk')
     number = randint(0, 49)
     ret = {"message": SMALLTALK_LIST[number], "number": number}
-    return json.dumps(ret)
+
+    response = jsonify(ret)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 if __name__ == "__main__":
