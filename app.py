@@ -1,26 +1,12 @@
 import json
-import logging
 import os
 import subprocess
 from flask import Flask, request, jsonify
 from random import randint
 from smalltalk_data import SMALLTALK_LIST
+from utils import get_logger
 
-################################### LOGGER #####################
-name = __name__
-log_file = os.path.dirname(os.path.realpath(__file__)) + "/app_log.txt"
-level = logging.DEBUG
-
-formatter = logging.Formatter(
-    fmt='%(asctime)s %(levelname)s %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S')
-
-handler = logging.FileHandler(log_file)
-handler.setFormatter(formatter)
-
-logger = logging.getLogger(name)
-logger.setLevel(level)
-logger.addHandler(handler)
+logger = get_logger(__name__)
 
 ############################## SERVER #########################
 
@@ -75,6 +61,7 @@ def smalltalk():
 
 @app.route("/receive-ip", methods=['POST'])
 def receive_ip():
+    logger.info(request.remote_addr + ' calls receive-ip')
     request_json = request.get_json()
     keys = request_json.keys()
     if "name" in keys and "ip" in keys:

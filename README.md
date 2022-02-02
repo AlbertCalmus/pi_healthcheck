@@ -95,6 +95,15 @@ After rebooting, browse to `192.168.1.XY:777/healthcheck`. If everything worked 
 }
 ```
 
+### Send IP
+
+Update the `SEND_TO_IP` and `PORT` in `send-ip.py` and schedule Crontab (below will send every hour)
+
+```Bash
+crontab -e
+* */1 * * * sh /home/pi/Projects/home/pi_healthcheck/send-ip.sh
+```
+
 ## Usage 
 
 ### App
