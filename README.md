@@ -26,7 +26,7 @@ sudo chmod +777 app.sh
 ls -l app.py #to check  persmission
 ```
 
-Update `app.sh` with your path.
+Update `app.sh` with your paths.
 
 ### Deamon
 
@@ -97,7 +97,8 @@ After rebooting, browse to `192.168.1.XY:777/healthcheck`. If everything worked 
 
 ### Send IP
 
-Update the `SEND_TO_IP` and `PORT` in `send-ip.py` and schedule Crontab (below will send every hour)
+Update the `SEND_TO_IP` and `PORT` in `send-ip.py`. And the paths in `send-ip.sh`.  
+Finally, update schedule Crontab (below will send every hour)
 
 ```Bash
 crontab -e
