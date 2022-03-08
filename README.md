@@ -102,7 +102,7 @@ Finally, update schedule Crontab (below will send every hour)
 
 ```Bash
 crontab -e
-* */1 * * * sh /home/pi/Projects/home/pi_healthcheck/send-ip.sh
+0 * * * * sh /home/pi/Projects/home/pi_healthcheck/send-ip.sh
 ```
 
 ## Usage 
