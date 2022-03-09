@@ -81,4 +81,4 @@ def receive_ip():
 
 if __name__ == "__main__":
     logger.info('Flask server starting')
-    app.run(host="0.0.0.0", port=777)
+    app.run(host="0.0.0.0", port=7778)
