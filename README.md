@@ -15,7 +15,6 @@ python3 -m venv pi_healthcheck_venv
 source pi_healthcheck_venv/bin/activate 
 pip install -r requirements.txt
 ```
-Add the pi_healthcheck_venv to `.gitignore`.
 
 ### App
 
@@ -23,7 +22,7 @@ Make sure that `app.py` & `app.sh` is executable
 ```Bash
 sudo chmod +777 app.py
 sudo chmod +777 app.sh
-ls -l app.py #to check  persmission
+ls -l app.* #to check  persmission
 ```
 
 Update `app.sh` with your paths.
@@ -64,7 +63,11 @@ Reboot your system
 sudo reboot
 ```
 
-After rebooting, browse to `192.168.1.XY:777/healthcheck`. If everything worked fine, it should look like that
+After rebooting, run 
+ ```Bash
+`curl localhost:777/healthcheck`
+```
+If everything worked fine, it should look like that
 ```json
 {
   "clock": {
@@ -97,12 +100,22 @@ After rebooting, browse to `192.168.1.XY:777/healthcheck`. If everything worked 
 
 ### Send IP
 
-Update the `SEND_TO_IP` and `PORT` in `send-ip.py`. And the paths in `send-ip.sh`.  
+Update the `SEND_TO_IP` and `PORT` in `send-ip.py`. 
+
+Make sure that `send-ip.py` & `send-ip.sh` is executable
+```Bash
+sudo chmod +777 send-ip.py
+sudo chmod +777 send-ip.sh
+sudo chmod +777 app_log.txt # as shared with app.py
+ls -l send-ip.* #to check  persmission
+```
+And the paths in `send-ip.sh`.  
+
 Finally, update schedule Crontab (below will send every hour)
 
 ```Bash
 crontab -e
-0 * * * * sh /home/pi/Projects/home/pi_healthcheck/send-ip.sh
+0 * * * * /home/pi/Projects/pi_healthcheck/send-ip.sh
 ```
 
 ## Usage 
