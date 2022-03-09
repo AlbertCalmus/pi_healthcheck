@@ -100,12 +100,22 @@ If everything worked fine, it should look like that
 
 ### Send IP
 
-Update the `SEND_TO_IP` and `PORT` in `send-ip.py`. And the paths in `send-ip.sh`.  
+Update the `SEND_TO_IP` and `PORT` in `send-ip.py`. 
+
+Make sure that `send-ip.py` & `send-ip.sh` is executable
+```Bash
+sudo chmod +777 send-ip.py
+sudo chmod +777 send-ip.sh
+sudo chmod +777 app_log.txt # as shared with app.py
+ls -l send-ip.* #to check  persmission
+```
+And the paths in `send-ip.sh`.  
+
 Finally, update schedule Crontab (below will send every hour)
 
 ```Bash
 crontab -e
-0 * * * * sh /home/pi/Projects/home/pi_healthcheck/send-ip.sh
+0 * * * * /home/pi/Projects/pi_healthcheck/send-ip.sh
 ```
 
 ## Usage 
