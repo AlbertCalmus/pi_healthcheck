@@ -15,7 +15,6 @@ python3 -m venv pi_healthcheck_venv
 source pi_healthcheck_venv/bin/activate 
 pip install -r requirements.txt
 ```
-Add the pi_healthcheck_venv to `.gitignore`.
 
 ### App
 
@@ -23,7 +22,7 @@ Make sure that `app.py` & `app.sh` is executable
 ```Bash
 sudo chmod +777 app.py
 sudo chmod +777 app.sh
-ls -l app.py #to check  persmission
+ls -l app.* #to check  persmission
 ```
 
 Update `app.sh` with your paths.
@@ -64,7 +63,11 @@ Reboot your system
 sudo reboot
 ```
 
-After rebooting, browse to `192.168.1.XY:777/healthcheck`. If everything worked fine, it should look like that
+After rebooting, run 
+ ```Bash
+`curl localhost:777/healthcheck`
+```
+If everything worked fine, it should look like that
 ```json
 {
   "clock": {
